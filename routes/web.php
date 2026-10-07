@@ -46,3 +46,7 @@ Route::get('/matakuliah/edit/{kode}', [MatakuliahController::class, 'edit']);
 Route::get('/matakuliah/update/{kode}', [MatakuliahController::class, 'update']);
 
 Route::get('/matakuliah/destroy/{kode}', [MatakuliahController::class, 'destroy']);
+
+use App\Http\Controllers\HomeController;
+
+Route::get('/home', [HomeController::class, 'index']);
