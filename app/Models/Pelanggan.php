@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use App\Models\Pelanggan;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 
 class Pelanggan extends Model
 {
