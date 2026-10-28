@@ -403,21 +403,25 @@
                                     </div>
 
                                     <!-- Gender -->
+
+                                    <!-- Gender -->
                                     <div class="mb-3">
                                         <label for="gender" class="form-label">Gender</label>
                                         <select id="gender" name="gender" class="form-select">
                                             <option value="">-- Pilih --</option>
                                             <option value="Male" {{ old('gender') == 'Male' ? 'selected' : '' }}>
-                                                Male</option>
+                                                Male
+                                            </option>
                                             <option value="Female" {{ old('gender') == 'Female' ? 'selected' : '' }}>
-                                                Female</option>
-                                            <option value="Other" {{ old('gender') == 'Other' ? 'selected' : '' }}>
-                                                Other</option>
+                                                Female
+                                            </option>
                                         </select>
+
                                         @error('gender')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
+
                                 </div>
 
                                 <div class="col-lg-4 col-sm-12">
