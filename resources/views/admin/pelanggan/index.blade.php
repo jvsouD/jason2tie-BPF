@@ -114,8 +114,7 @@
                         <span class="sidebar-text">Dashboard</span>
                     </a>
                 </li>
-
-
+                <!-- Tambahkan blok kode ini -->
                 <li class="nav-item  active ">
                     <a href="{{ route('pelanggan.index') }}" class="nav-link">
                         <span class="sidebar-icon">
@@ -346,17 +345,16 @@
                         </a>
                     </li>
                     <li class="breadcrumb-item"><a href="#">Pelanggan</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Tambah Pelanggan</li>
                 </ol>
             </nav>
             <div class="d-flex justify-content-between w-100 flex-wrap">
                 <div class="mb-3 mb-lg-0">
-                    <h1 class="h4">Tambah Pelanggan</h1>
-                    <p class="mb-0">Form untuk menambahkan data pelanggan baru.</p>
+                    <h1 class="h4">Data Pelanggan</h1>
+                    <p class="mb-0">List data seluruh pelanggan</p>
                 </div>
                 <div>
-                    <a href="{{ route('pelanggan.index') }}" class="btn btn-primary">
-                        Kembali
+                    <a href="{{ route('pelanggan.create') }}" class="btn btn-success text-white">
+                        Tambah Pelanggan
                     </a>
                 </div>
             </div>
@@ -364,94 +362,37 @@
 
         <div class="row">
             <div class="col-12 mb-4">
-                <div class="card border-0 shadow components-section">
+                <div class="card border-0 shadow mb-4">
                     <div class="card-body">
-                        <form action="{{ route('pelanggan.store') }}" method="POST">
-                            @csrf
-                            <div class="row mb-4">
-                                <div class="col-lg-4 col-sm-6">
-                                    <!-- First Name -->
-                                    <div class="mb-3">
-                                        <label for="first_name" class="form-label">First name</label>
-                                        <input type="text" id="first_name" name="first_name" class="form-control"
-                                            value="{{ old('first_name') }}">
-                                        @error('first_name')
-                                            <div class="text-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-
-                                    <!-- Last Name -->
-                                    <div class="mb-3">
-                                        <label for="last_name" class="form-label">Last name</label>
-                                        <input type="text" id="last_name" name="last_name" class="form-control"
-                                            value="{{ old('last_name') }}">
-                                        @error('last_name')
-                                            <div class="text-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-4 col-sm-6">
-                                    <!-- Birthday -->
-                                    <div class="mb-3">
-                                        <label for="birthday" class="form-label">Birthday</label>
-                                        <input type="date" id="birthday" name="birthday" class="form-control"
-                                            value="{{ old('birthday') }}">
-                                        @error('birthday')
-                                            <div class="text-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-
-                                    <!-- Gender -->
-                                    <div class="mb-3">
-                                        <label for="gender" class="form-label">Gender</label>
-                                        <select id="gender" name="gender" class="form-select">
-                                            <option value="">-- Pilih --</option>
-                                            <option value="Male" {{ old('gender') == 'Male' ? 'selected' : '' }}>
-                                                Male</option>
-                                            <option value="Female" {{ old('gender') == 'Female' ? 'selected' : '' }}>
-                                                Female</option>
-                                            <option value="Other" {{ old('gender') == 'Other' ? 'selected' : '' }}>
-                                                Other</option>
-                                        </select>
-                                        @error('gender')
-                                            <div class="text-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-4 col-sm-12">
-                                    <!-- Email -->
-                                    <div class="mb-3">
-                                        <label for="email" class="form-label">Email</label>
-                                        <input type="email" id="email" name="email" class="form-control"
-                                            value="{{ old('email') }}">
-                                        @error('email')
-                                            <div class="text-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-
-                                    <!-- Phone -->
-                                    <div class="mb-3">
-                                        <label for="phone" class="form-label">Phone</label>
-                                        <input type="text" id="phone" name="phone" class="form-control"
-                                            value="{{ old('phone') }}">
-                                        @error('phone')
-                                            <div class="text-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-
-                                    <!-- Buttons -->
-                                    <div class="">
-                                        <button type="submit" class="btn btn-primary">Simpan</button>
-                                        <a href="{{ route('pelanggan.index') }}"
-                                            class="btn btn-outline-secondary ms-2">Batal</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
+                        <div class="table-responsive">
+                            <table id="table-pelanggan" class="table table-centered table-nowrap mb-0 rounded">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th class="border-0">First Name</th>
+                                        <th class="border-0">Last Name</th>
+                                        <th class="border-0">Birthday</th>
+                                        <th class="border-0">Gender</th>
+                                        <th class="border-0">Email</th>
+                                        <th class="border-0">Phone</th>
+                                        <th class="border-0 rounded-end">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($dataPelanggan as $item)
+                                        <tr>
+                                            <td>{{ $item->first_name }}</td>
+                                            <td>{{ $item->last_name }}</td>
+                                            <td>{{ $item->birhday }}</td>
+                                            <td>{{ $item->gender }}</td>
+                                            <td>{{ $item->email }}</td>
+                                            <td>{{ $item->phone }}</td>
+                                            <td>Tombol Edit & Tombol Hapus</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-
                 </div>
             </div>
         </div>
