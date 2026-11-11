@@ -128,6 +128,15 @@
                     </a>
                 </li>
 
+                <li class="nav-item {{ request()->routeIs('user.*') ? 'active' : '' }}">
+                    <a href="{{ route('user.index') }}" class="nav-link">
+                        <span class="sidebar-icon">
+                            <i class="fas fa-user"></i>
+                        </span>
+                        <span class="sidebar-text">User</span>
+                    </a>
+                </li>
+
                 <li class="nav-item">
                     <span class="nav-link  collapsed  d-flex justify-content-between align-items-center"
                         data-bs-toggle="collapse" data-bs-target="#submenu-app">
